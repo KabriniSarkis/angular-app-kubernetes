@@ -1,4 +1,4 @@
-# stage 1
+# stage 1 2
 FROM node:latest as node
 WORKDIR /app
 COPY . .
