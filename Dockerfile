@@ -1,10 +1,12 @@
 # stage 1 2
-FROM node:latest as node
+FROM node:12.18.1
+ENV NODE_ENV=production
 WORKDIR /app
+COPY ["package.json", "package-lock.json*", "./"]
+RUN npm install --production
 COPY . .
-RUN npm install
-RUN npm run build --prod
+CMD [ "node", "server.js" ]
 
 # stage 2
-#FROM nginx:alpine
-#COPY --from=node /app/dist/angular-app /usr/share/nginx/html
+FROM nginx:alpine
+COPY --from=node /app/dist/angular-app /usr/share/nginx/html
