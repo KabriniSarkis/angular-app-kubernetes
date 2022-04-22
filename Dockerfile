@@ -2,6 +2,7 @@
 # stage 1 2
 FROM node:latest as node
 WORKDIR /app
+COPY node_modules/ ./
 RUN npm install
 RUN npm run build --prod
 
